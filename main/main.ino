@@ -22,7 +22,6 @@ WiFiClient client;
 const char* ssid     = "@";
 const char* password = "m5sprmu4yvvum";
 const char* server     = "toi-jphacks.herokuapp.com";
-//const char* server     = "172.20.10.3";
 const int httpPort = 80;
 
 int fsr_array[10];
@@ -120,9 +119,9 @@ void loop() {
   client.print(String("GET ") + url + " HTTP/1.1\r\n" +
                "Host: " + server + "\r\n" + 
                "Connection: close\r\n\r\n");
-  //delay(30000); //1秒ごとにサーバーへ。
+  //一秒ごとに
    delay(1000);
-  // Read all the lines of the reply from server and print them to Serial
+
   Serial.println("Respond:");
   int i = 0;
   String line;
@@ -138,53 +137,17 @@ void loop() {
 
     motion_number = number[4];
     
-
-    
-
-    
-//    *number = line.c_str();
-//    
-//    for (int j=0;j<10 ;j++){
-//      Serial.print(j);
-//      Serial.println("番目の出力");
-//       Serial.println(number[j]);
-//    }
-    
-
-
-  //*number = line.c_str();
-  // Serial.println("line.c_str()の配列サイズは");
-  // Serial.println(sizeof number);
- //  Serial.println("8番目の出力");
-//       Serial.println(number[7]);
-//
-//       Serial.println("9番目の出力");
-//       Serial.println(number[8]);
-    
-
-
-
- 
-//  
-//  Serial.println("  s[0]の値は、  ");
-//  Serial.println("========================== ");
-//  //Serial.println(ss.str());//受け取ったデータを表示
-//  Serial.println("************************ ");
-// 
-
   Serial.println();
   Serial.println("closing connection");
 
-  //ここで文解析、motion_numberにだいにゅう。
-
   //受け取った値次第で変更
-  if  (motion_number.equals("2")) //冷房
-  {
+  if  (motion_number.equals("2")) {//冷房
       for (pos = 0; pos <= 5; pos += 1) { // sweep from 180 degrees to 0 degrees
           servo1.write(pos);
           delay(50);
-      }
-      ButtunPush(servo2);
+  }
+  ButtunPush(servo2);
+
    }else if (motion_number.equals("1")) { //除湿,
           for (pos = 5; pos >= 0; pos -= 1) { // sweep from 0 degrees to 180 degrees
         // in steps of 1 degree
@@ -198,5 +161,4 @@ void loop() {
           delay(50);
       }
     }
-
 }
