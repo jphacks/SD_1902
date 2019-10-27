@@ -38,7 +38,7 @@
 ## 開発内容・開発技術
 ### 活用した技術
 #### API・データ
-* LINE Bot API
+* LINE Messaging API
 
 #### フレームワーク・ライブラリ・モジュール
 * Flask
