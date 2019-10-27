@@ -21,7 +21,7 @@ int pos = 0;      // position in degrees
 WiFiClient client;
 const char* ssid     = "@";
 const char* password = "m5sprmu4yvvum";
-const char* server     = "toi-jphacks.herokuapp.com";
+const char* server     = "jphacks-toi.herokuapp.com";
 const int httpPort = 80;
 
 int fsr_array[10];
