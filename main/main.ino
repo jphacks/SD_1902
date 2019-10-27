@@ -120,8 +120,8 @@ void loop() {
   client.print(String("GET ") + url + " HTTP/1.1\r\n" +
                "Host: " + server + "\r\n" + 
                "Connection: close\r\n\r\n");
-  delay(30000); //1秒ごとにサーバーへ。
-
+  //delay(30000); //1秒ごとにサーバーへ。
+   delay(1000);
   // Read all the lines of the reply from server and print them to Serial
   Serial.println("Respond:");
   int i = 0;
@@ -178,18 +178,18 @@ void loop() {
   //ここで文解析、motion_numberにだいにゅう。
 
   //受け取った値次第で変更
-  if  (motion_number.equals("0")) //除湿
+  if  (motion_number.equals("2")) //冷房
   {
-      for (pos = 5; pos >= 0; pos -= 1) { // sweep from 0 degrees to 180 degrees
-        // in steps of 1 degree
-        servo1.write(pos);
-        delay(50);             // waits 20ms for the servo to reach the position
-      }
-      ButtunPush(servo2);
-   }else if (motion_number.equals("1")) { //冷房
       for (pos = 0; pos <= 5; pos += 1) { // sweep from 180 degrees to 0 degrees
           servo1.write(pos);
           delay(50);
+      }
+      ButtunPush(servo2);
+   }else if (motion_number.equals("1")) { //除湿,
+          for (pos = 5; pos >= 0; pos -= 1) { // sweep from 0 degrees to 180 degrees
+        // in steps of 1 degree
+        servo1.write(pos);
+        delay(50);             // waits 20ms for the servo to reach the position
       }
       ButtunPush(servo2);    
    }else {
